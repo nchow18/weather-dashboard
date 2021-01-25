@@ -107,8 +107,6 @@ var clickButton = function(clicked_id) {
 
 var getCity = function(city) {
 
-    var apiKey = "c20559f5ed4e6410cc850ed0d132b5dd";
-
     var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" +city+"&appid=c20559f5ed4e6410cc850ed0d132b5dd";
 
     // make a get request to url
@@ -218,6 +216,8 @@ var getCity = function(city) {
                     }
                 })
         })
+    
+    .catch(err => alert("Wrong City Name!"))
 };
 
 loadCity();
