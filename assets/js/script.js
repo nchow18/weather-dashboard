@@ -38,8 +38,10 @@ var loadCity = function () {
         
             var recentButtonEl = document.createElement("button");
             recentButtonEl.classList = "recent-btn";
+            recentButtonEl.setAttribute("onclick", "clickButton(this.id)");
+
             recentButtonEl.textContent = recentsearch.recentcity[i].city;
-        
+            recentButtonEl.setAttribute("id", "new-"+i);
             listEl.appendChild(recentButtonEl);
             recentlist.appendChild(listEl);
             }
@@ -70,9 +72,9 @@ var formSubmitHandler = function(event) {
     
         var recentButtonEl = document.createElement("button");
         recentButtonEl.classList = "recent-btn";
-        recentButtonEl.setAttribute("onclick", "clickButton()");
+        recentButtonEl.setAttribute("onclick", "clickButton(this.id)");
 
-        recentButtonEl.setAttribute("id", id);
+        recentButtonEl.setAttribute("id", "new-"+id);
         recentButtonEl.textContent = cityname;
 
         console.log("The NEW id: " + id);
@@ -94,8 +96,13 @@ var formSubmitHandler = function(event) {
 
 };
 
-var clickButton = function() {
-    console.log("hello");
+var clickButton = function(clicked_id) {
+    var location = document.getElementById(clicked_id).textContent;
+    alert("Searching recent selected history: " + location);
+
+    console.log(location);
+
+    getCity(location);
 }
 
 var getCity = function(city) {
