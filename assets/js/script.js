@@ -3,6 +3,8 @@ var cityFormEl = document.querySelector("#city-form");
 var apiKey = "c20559f5ed4e6410cc850ed0d132b5dd";
 var recentsearch = {};
 var clearhistorybtn = document.querySelector("#clear-history");
+var arraylength = recentsearch.recentcity.length;
+var id = 0 + arraylength;
 
 var clearHistory = function() {
     localStorage.clear();
@@ -34,7 +36,7 @@ var loadCity = function () {
         
             var recentButtonEl = document.createElement("button");
             recentButtonEl.classList = "recent-btn";
-            recentButtonEl.textContent = recentsearch.recentcity[i].cityname;
+            recentButtonEl.textContent = recentsearch.recentcity[i].city;
         
             listEl.appendChild(recentButtonEl);
             recentlist.appendChild(listEl);
@@ -67,7 +69,11 @@ var formSubmitHandler = function(event) {
         var recentButtonEl = document.createElement("button");
         recentButtonEl.classList = "recent-btn";
         recentButtonEl.setAttribute("onclick", "clickButton()");
+
+        recentButtonEl.setAttribute("id", id);
         recentButtonEl.textContent = cityname;
+
+        console.log("The NEW id: " + id);
     
         listEl.appendChild(recentButtonEl);
         recentlist.appendChild(listEl);
@@ -75,16 +81,19 @@ var formSubmitHandler = function(event) {
         alert("Please enter a City Name")
     }
 
-    recentsearch.recentcity.push({cityname})
+    recentsearch.recentcity.push({
+        city: cityname,
+        searchID: id
+    })
     
-
+    
     saveSearch();
-
+    id++;
 
 };
 
 var clickButton = function() {
-    var cityname = 
+    console.log("hello");
 }
 
 var getCity = function(city) {
@@ -146,11 +155,12 @@ var getCity = function(city) {
 
             //loop to display weather forecast 1-5 card innerHTML
             for (var i = 1; 1 < 5; i++) {
+                if (i === 5) {break;} else {
                 var fivedays = moment().add(i, 'days').format('L');
                 document.querySelector(".date"+i).innerHTML = "<span class='block'><b>"+fivedays+"</b></span>";
                 document.querySelector(".temperature"+i).innerHTML = "<span class='block'><b>"+"Temp: "+temperature[i]+"</b></span>";
                 document.querySelector(".humidity"+i).innerHTML = "<span class='block'><b>"+"Humidity: "+humiditycard[i]+"</b></span>";
-                document.querySelector(".icon"+i).innerHTML = "<img class='weather-icon' src='http://openweathermap.org/img/w/" + icons[i] + ".png'/>";
+                document.querySelector(".icon"+i).innerHTML = "<img class='weather-icon' src='http://openweathermap.org/img/w/" + icons[i] + ".png'/>";}
             }
         })
 
