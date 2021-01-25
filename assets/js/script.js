@@ -3,8 +3,7 @@ var cityFormEl = document.querySelector("#city-form");
 var apiKey = "c20559f5ed4e6410cc850ed0d132b5dd";
 var recentsearch = {};
 var clearhistorybtn = document.querySelector("#clear-history");
-var arraylength = recentsearch.recentcity.length;
-var id = 0 + arraylength;
+var id = 0;
 
 var clearHistory = function() {
     localStorage.clear();
