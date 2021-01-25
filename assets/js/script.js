@@ -5,6 +5,7 @@ var apiKey = "c20559f5ed4e6410cc850ed0d132b5dd";
 var recentsearch = {};
 var clearhistorybtn = document.querySelector("#clear-history");
 var id = 0;
+var index = 0;
 
 var clearHistory = function() {
     localStorage.clear();
@@ -24,7 +25,8 @@ var loadCity = function () {
     if (!recentsearch) {
         recentsearch = {
             recentcity: [],
-            recentcoord: []
+            recentcoord: [],
+            uvindex: [],
         }
     } 
 
@@ -120,10 +122,12 @@ var getCity = function(city) {
 
             recentsearch.recentcoord.push({
                 lat: lat.lat,
-                lon: lat.lon
+                lon: lat.lon,
             })
 
             saveSearch();
+
+            index++;
 
             var currentdate = moment().format('L');
             console.log("The current Date is: " + currentdate)
@@ -170,9 +174,13 @@ var getCity = function(city) {
                 document.querySelector(".humidity"+i).innerHTML = "<span class='block'><b>"+"Humidity: "+humiditycard[i]+"</b></span>";
                 document.querySelector(".icon"+i).innerHTML = "<img class='weather-icon' src='http://openweathermap.org/img/w/" + icons[i] + ".png'/>";}
             }
+
+            var index = recentsearch.recentcoord.length - 1;
+
+            console.log(index);
             
-            var latitude = recentsearch.recentcoord[0].lat;
-            var longitude = recentsearch.recentcoord[0].lon;
+            var latitude = recentsearch.recentcoord[index].lat;
+            var longitude = recentsearch.recentcoord[index].lon;
 
             console.log(latitude);
             console.log(longitude);
@@ -186,6 +194,10 @@ var getCity = function(city) {
                     console.log(data)
                     var uv = data['value'];
 
+                    recentsearch.uvindex.push({uv})
+
+                    saveSearch()
+
                     if (uv <= 3) {
                         document.querySelector("#uv").innerHTML = "<b class='uv1'>" + uv + "</b>";
                     } else if (
@@ -197,14 +209,8 @@ var getCity = function(city) {
                     ) {
                         document.querySelector("#uv").innerHTML = "<b class='uv3'>" + uv + "</b>";
                     }
-
                 })
-
         })
-
-
-
-
 };
 
 loadCity();
