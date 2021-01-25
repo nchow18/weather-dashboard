@@ -32,6 +32,10 @@
     color: white;
 }
 
+li {
+    padding: .1rem;
+}
+
 /*---------------------------*/
 /*      TOP PANEL       */
 /*---------------------------*/
@@ -166,6 +170,10 @@ ul {
 /*------------------------------*/
 /*      CARD GRID FORECAST      */
 /*------------------------------*/
+
+.weather-icon {
+    padding-left: 3rem;
+}
 
 .card-grid {
     display: grid;
