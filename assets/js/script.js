@@ -217,7 +217,6 @@ var getCity = function(city) {
                 })
         })
     
-    .catch(err => alert("Wrong City Name!"))
 };
 
 loadCity();
