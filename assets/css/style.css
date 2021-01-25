@@ -1,0 +1,206 @@
+* {
+    top: 0;
+    left: 0;
+}
+
+:root {
+    --main-color: #252525;
+    --second-color: #6930c3;
+    --third-color: #f0f0f0;
+    --fourth-color: white;
+}
+
+.block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align: center;
+}
+
+.page-container-grid {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 15% 90%; 
+    background-color: white;
+    width: 100%;
+    height: 40rem;
+}
+
+.hover:hover {
+    background-color: var(--second-color);
+    color: white;
+}
+
+li {
+    padding: .1rem;
+}
+
+/*---------------------------*/
+/*      TOP PANEL       */
+/*---------------------------*/
+
+.top-panel {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+    background-color: var(--main-color);
+    color: white;
+    display: inline-block;
+    text-align: center;
+    padding: 1rem;
+}
+
+.search-bar {
+    grid-row: 1;
+    width: 100%;
+}
+
+/*---------------------------*/
+/*      LEFT PANEL ITEMS      */
+/*---------------------------*/
+
+.left-panel {
+    grid-row: 2;
+    grid-column: 1;
+    background-color: var(--third-color);
+}
+
+.search-bar {
+    padding: 1rem;
+}
+
+.search {
+    width: 50%;
+}
+
+.city {
+}
+
+.recent-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid grey;
+}
+
+.recent-btn:hover {
+    background-color: var(--second-color);
+    color: white;
+    font-weight: bold;
+}
+
+/*---------------------------*/
+/*      MAIN PANEL ITEMS      */
+/*---------------------------*/
+
+.main-panel {
+    grid-row: 2;
+    grid-column: 2;
+    background-color: var(--fourth-color);
+    display: grid;
+    grid-template-rows: 40% 60%;
+    padding: 1rem;
+}
+
+
+/*---------------------------*/
+/*      WEATHER DETAILS      */
+/*---------------------------*/
+
+.weather-description {
+    grid-row: 1;
+    padding: 2rem 0 2rem 0;
+}
+
+ul {
+    text-decoration: none;
+    list-style: none;
+}
+
+/*---------------------------*/
+/*      WEATHER 5 DAYS      */
+/*---------------------------*/
+
+.weather-forecast {
+    grid: 2;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 3rem auto;
+    justify-content: space-around;
+}
+
+.day-card {
+    background-color: var(--second-color);
+    width: 10rem;
+    height: 15rem;
+    margin-left: 2rem;
+    border-radius: 10px;;
+    color: white;
+}
+
+.day-card:hover {
+    box-shadow: 0 0 15px black;
+}
+
+.day-forecast {
+    grid-row: 1;
+    grid-column: 1 /span 5;
+}
+
+.day-1 {
+    grid-column: 1;
+}
+
+.day-2 {
+    grid-column: 2;
+}
+
+.day-3 {
+    grid-column: 3;
+}
+
+.day-4 {
+    grid-column: 4;
+}
+
+.day-5 {
+    grid-column: 5;
+}
+
+/*------------------------------*/
+/*      CARD GRID FORECAST      */
+/*------------------------------*/
+
+.weather-icon {
+    padding-left: 3rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+}
+
+.card-grid-1 {
+    grid-row: 1;
+    padding: .5rem;
+}
+
+.card-grid-2 {
+    grid-row: 2;
+    padding: .5rem;
+}
+
+.card-grid-3 {
+    grid-row: 3;
+    padding: .5rem;
+}
+
+.card-grid-4 {
+    grid-row: 4;
+    padding: .5rem;
+}
+
+
+
+
+
