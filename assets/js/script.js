@@ -154,7 +154,7 @@ var getCity = function(city) {
 
             //loop to display weather forecast 1-5 card innerHTML
             for (var i = 1; 1 < 5; i++) {
-                if (i === 5) {break;} else {
+                if (i === 6) {break;} else {
                 var fivedays = moment().add(i, 'days').format('L');
                 document.querySelector(".date"+i).innerHTML = "<span class='block'><b>"+fivedays+"</b></span>";
                 document.querySelector(".temperature"+i).innerHTML = "<span class='block'><b>"+"Temp: "+temperature[i]+"</b></span>";
