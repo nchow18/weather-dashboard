@@ -1,3 +1,4 @@
+
 var cityNameInputEl = document.querySelector("#cityname");
 var cityFormEl = document.querySelector("#city-form");
 var apiKey = "c20559f5ed4e6410cc850ed0d132b5dd";
@@ -22,8 +23,8 @@ var loadCity = function () {
 
     if (!recentsearch) {
         recentsearch = {
-            recentcity: [ 
-            ]
+            recentcity: [],
+            recentcoord: []
         }
     } 
 
@@ -107,13 +108,22 @@ var getCity = function(city) {
         .then(data => {
             console.log(data)
             var cityname = data['city']['name'];
-            console.log("City Name is: " + cityname)
             var humidity = data['list']['0']['main']['humidity'];
-            console.log("Humidity is: " + humidity)
             var windspeed = data['list']['0']['wind']['speed'];
+            var lat = data['city']['coord'];
+
+            console.log(data)
+            console.log("City Name is: " + cityname)
+            console.log("Humidity is: " + humidity)
             console.log("Windspeed is: " + windspeed)
-            var pressure = data['list']['0']['main']['pressure'];
-            console.log("Pressure is: " + pressure)
+            console.log(lat)
+
+            recentsearch.recentcoord.push({
+                lat: lat.lat,
+                lon: lat.lon
+            })
+
+            saveSearch();
 
             var currentdate = moment().format('L');
             console.log("The current Date is: " + currentdate)
@@ -121,7 +131,6 @@ var getCity = function(city) {
             document.querySelector("#city").innerHTML = " " + cityname + " " + currentdate;
             document.querySelector("#humidity").innerHTML = " " + humidity + "%";
             document.querySelector("#wind").innerHTML = " " + windspeed;
-            document.querySelector("#pressure").innerHTML = " " + pressure;
 
             //temperate variables
             var temp1 = (data['list']['0']['main']['temp'] - 273.15).toFixed(2);
@@ -161,7 +170,40 @@ var getCity = function(city) {
                 document.querySelector(".humidity"+i).innerHTML = "<span class='block'><b>"+"Humidity: "+humiditycard[i]+"</b></span>";
                 document.querySelector(".icon"+i).innerHTML = "<img class='weather-icon' src='http://openweathermap.org/img/w/" + icons[i] + ".png'/>";}
             }
+            
+            var latitude = recentsearch.recentcoord[0].lat;
+            var longitude = recentsearch.recentcoord[0].lon;
+
+            console.log(latitude);
+            console.log(longitude);
+
+            var apiUv = "http://api.openweathermap.org/data/2.5/uvi?lat="+latitude+"&lon="+longitude+"&appid=c20559f5ed4e6410cc850ed0d132b5dd";
+
+            // make a get request to url
+            fetch(apiUv) 
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    var uv = data['value'];
+
+                    if (uv <= 3) {
+                        document.querySelector("#uv").innerHTML = "<b class='uv1'>" + uv + "</b>";
+                    } else if (
+                        uv <= 6
+                    ) {
+                        document.querySelector("#uv").innerHTML = "<b class='uv2'>" + uv + "</b>";
+                    } else if (
+                        uv <= 9
+                    ) {
+                        document.querySelector("#uv").innerHTML = "<b class='uv3'>" + uv + "</b>";
+                    }
+
+                })
+
         })
+
+
+
 
 };
 
